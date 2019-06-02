@@ -46,7 +46,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 					.withClient("automatic-client")
 					.secret(passwordEncoder().encode("noonewilleverguess3"))
 					.scopes("resource:read")
-					.authorizedGrantTypes("password");
+					.authorizedGrantTypes("password", "client_credentials");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
