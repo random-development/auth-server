@@ -37,6 +37,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			        .scopes("resource:read")
 			        .authorizedGrantTypes("authorization_code", "password")
 			        .redirectUris("http://localhost:4200/login")
+			        .autoApprove(true)
 			        .and()
 			        .withClient("resource-client")
 			        .secret(passwordEncoder().encode("noonewilleverguess2"))
