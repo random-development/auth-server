@@ -23,7 +23,6 @@ public class SimpleCORSFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
                                     final FilterChain filterChain) throws ServletException, IOException {
-    	System.out.println("FILTERING");
     	 response.addHeader("Access-Control-Allow-Origin", "*");
          response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD, OPTIONS");
          response.addHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
@@ -32,7 +31,6 @@ public class SimpleCORSFilter extends OncePerRequestFilter {
          response.addIntHeader("Access-Control-Max-Age", 10);
     	
     	if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-    		System.out.println("OPTIONS");
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
         	filterChain.doFilter(request, response);
