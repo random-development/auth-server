@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +17,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Value("${spring.security.oauth2.client.registration.first-client.redirect-uri}")
+	private String firstClientRedirectUri;
 	
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -36,7 +40,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			        .secret(passwordEncoder().encode("noonewilleverguess"))
 			        .scopes("resource:read")
 			        .authorizedGrantTypes("authorization_code", "password")
-			        .redirectUris("http://localhost:4200/login")
+			        .redirectUris(firstClientRedirectUri)
 			        .autoApprove(true)
 			        .and()
 			        .withClient("resource-client")
